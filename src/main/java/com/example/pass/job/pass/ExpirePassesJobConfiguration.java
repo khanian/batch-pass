@@ -4,6 +4,7 @@ import com.example.pass.repository.pass.PassEntity;
 import com.example.pass.repository.pass.PassStatus;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
+import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
@@ -11,6 +12,7 @@ import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.database.JpaCursorItemReader;
+import org.springframework.batch.item.database.JpaItemWriter;
 import org.springframework.batch.item.database.builder.JpaCursorItemReaderBuilder;
 import org.springframework.batch.item.database.builder.JpaItemWriterBuilder;
 import org.springframework.context.annotation.Bean;
@@ -21,6 +23,7 @@ import java.time.LocalDateTime;
 import java.util.Map;
 
 @Configuration
+@EnableBatchProcessing
 public class ExpirePassesJobConfiguration {
     private final int CHUNK_SIZE = 5;
 
@@ -53,7 +56,7 @@ public class ExpirePassesJobConfiguration {
 
     @Bean
     @StepScope
-    public ItemReader<? extends PassEntity> expirePassesItemReader() {
+    public JpaCursorItemReader<PassEntity> expirePassesItemReader() {
         return new JpaCursorItemReaderBuilder<PassEntity>()
                 .name("expirePassesItemReader")
                 .entityManagerFactory(entityManagerFactory)
@@ -74,7 +77,7 @@ public class ExpirePassesJobConfiguration {
 
     @Bean
     @StepScope
-    public ItemWriter<PassEntity> expirePassesItemWriter() {
+    public JpaItemWriter<PassEntity> expirePassesItemWriter() {
         return new JpaItemWriterBuilder<PassEntity>()
                 .entityManagerFactory(entityManagerFactory)
                 .build();
