@@ -23,7 +23,7 @@ import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-//import org.junit.Test -> import org.junit.jupiter.api.Test; 변경
+//import org.junit.Test -> import org.junit.jupiter.api.Test; Test import 주의/변경
 @Slf4j
 @SpringBootTest
 @SpringBatchTest
