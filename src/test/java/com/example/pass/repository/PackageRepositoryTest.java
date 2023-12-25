@@ -1,4 +1,4 @@
-package com.example.pass.Repository;
+package com.example.pass.repository;
 
 import com.example.pass.repository.packaze.PackageEntity;
 import com.example.pass.repository.packaze.PackageRepository;
