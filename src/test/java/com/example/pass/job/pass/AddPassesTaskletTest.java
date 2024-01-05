@@ -81,6 +81,7 @@ public class AddPassesTaskletTest {
         final List<PassEntity> passEntities = passEntityCaptor.getValue();
 
         assertEquals(1, passEntities.size());
+
         final PassEntity passEntity = passEntities.get(0);
         assertEquals(packageSeq, passEntity.getPackageSeq());
         assertEquals(userId, passEntity.getUserId());
