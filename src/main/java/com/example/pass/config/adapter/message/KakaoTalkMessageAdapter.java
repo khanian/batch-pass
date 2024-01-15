@@ -31,6 +31,7 @@ public class KakaoTalkMessageAdapter {
             return false;
         }
 
-        return response.getSuccessfulReceiverUuids().size() > 0;
+//        return response.getSuccessfulReceiverUuids().size() > 0;
+        return !response.getSuccessfulReceiverUuids().isEmpty();
     }
 }
